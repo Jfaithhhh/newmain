@@ -1,319 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Sign Up Form</title>
+    <title>Hey, It's Me!</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Verdana, sans-serif;
-        }
-
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #ffe6f2;
+            background-image: url('bg.avif');
+            background-size: cover;
+            background-position: center;
+            font-family: Verdana, Geneva, sans-serif; 
             text-align: center;
-            overflow: hidden;
+            margin: 10;
+            padding: 0;
         }
 
         .container {
-            background-color: #fff;
+            max-width: 650px;
+            margin: 50px auto;
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            width: 320px;
-            position: relative;
-            z-index: 10;
+            background-color: hsl(0, 0%, 100%); 
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
         }
 
-        h2 {
+        h1 {
+            color: #333333; 
+            font-size: 2.5em; 
             margin-bottom: 20px;
-            color: #ff66b2;
         }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ffb3d9;
-            border-radius: 8px;
+        p {
+            color: #666666; 
+            font-size: 1.2em;
+            line-height: 1.5;
             margin-bottom: 10px;
         }
 
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
+        .personal-info {
+            margin-top: 30px;
+            text-align: center; 
         }
 
-        .checkbox-group input {
-            margin-right: 10px;
+        .photo img, .personal-info img {
+            width: 200px; 
+            height: 150px; 
+            border-radius: 10px;
+            margin-bottom: 10px; 
         }
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #ff66b2;
+        .social-links {
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .social-links a img {
+            width: 60px; 
+            height: auto; 
+            border-radius: 50%;
+        }
+
+        .welcome-button {
+            background-color: #ffebcd; 
             border: none;
-            border-radius: 8px;
-            color: white;
+            color: #333; 
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
             font-size: 16px;
+            margin-bottom: 20px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-bottom: 10px;
-        }
-
-        button:hover {
-            background-color: #ff3385;
-        }
-
-        .success-message {
-            margin-top: 20px;
-            color: #4CAF50;
-            font-weight: bold;
-        }
-
-        #toggleForm {
-            cursor: pointer;
-            color: #ff66b2;
-        }
-
-        .forgot-password {
-            cursor: pointer;
-            color: #ff66b2;
-            margin-bottom: 10px;
-        }
-
-        .cloud {
-            position: absolute;
-            background: #fff;
-            background: linear-gradient(to bottom, #fff 5%, #f1f1f1 100%);
-            border-radius: 50%;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            z-index: 0;
-        }
-
-        .cloud::before,
-        .cloud::after {
-            content: '';
-            position: absolute;
-            background: #fff;
-            background: linear-gradient(to bottom, #fff 5%, #f1f1f1 100%);
-            border-radius: 50%;
-        }
-
-        .cloud.x1 {
-            top: 50px;
-            left: -200px;
-            width: 100px;
-            height: 60px;
-            animation: moveClouds 15s linear infinite;
-        }
-
-        .cloud.x1::before {
-            width: 60px;
-            height: 60px;
-            top: -30px;
-            left: 20px;
-        }
-
-        .cloud.x1::after {
-            width: 80px;
-            height: 80px;
-            top: -40px;
-            left: 60px;
-        }
-
-        .cloud.x2 {
-            top: 150px;
-            left: -300px;
-            width: 200px;
-            height: 120px;
-            animation: moveClouds 20s linear infinite;
-        }
-
-        .cloud.x2::before {
-            width: 120px;
-            height: 120px;
-            top: -60px;
-            left: 40px;
-        }
-
-        .cloud.x2::after {
-            width: 160px;
-            height: 160px;
-            top: -80px;
-            left: 120px;
-        }
-
-        .cloud.x3 {
-            top: 250px;
-            left: -400px;
-            width: 150px;
-            height: 90px;
-            animation: moveClouds 25s linear infinite;
-        }
-
-        .cloud.x3::before {
-            width: 90px;
-            height: 90px;
-            top: -45px;
-            left: 30px;
-        }
-
-        .cloud.x3::after {
-            width: 120px;
-            height: 120px;
-            top: -60px;
-            left: 90px;
-        }
-
-        .cloud.x4 {
-            top: 350px;
-            left: -500px;
-            width: 120px;
-            height: 70px;
-            animation: moveClouds 30s linear infinite;
-        }
-
-        .cloud.x4::before {
-            width: 70px;
-            height: 70px;
-            top: -35px;
-            left: 20px;
-        }
-
-        .cloud.x4::after {
-            width: 100px;
-            height: 100px;
-            top: -50px;
-            left: 70px;
-        }
-
-        @keyframes moveClouds {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(100vw);
-            }
-        }
-
-        .sticker {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-color: #ff66b2;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            color: white;
-            font-weight: bold;
-            z-index: 1;
-        }
-
-        .sticker1 {
-            top: 10px;
-            right: 10px;
-        }
-
-        .sticker2 {
-            bottom: 10px;
-            left: 10px;
-        }
-
-        .sticker3 {
-            top: 10px;
-            left: 10px;
-        }
-
-        .sticker4 {
-            bottom: 10px;
-            right: 10px;
+            border-radius: 10px;
         }
     </style>
 </head>
-
 <body>
-    <div class="cloud x1"></div>
-    <div class="cloud x2"></div>
-    <div class="cloud x3"></div>
-    <div class="cloud x4"></div>
+    <div class="container">
+        <h1>All About Myself</h1>
+        <button onclick="window.location.href='finals.html';">Back to Login</button>
+        <div class="personal-info">
+            <p><strong>Name:</strong> Jaizel Faith M. Ciervo</p>
+            <img src="IMG_20240303_095419_338.jpg" alt="My Photo">
+            <p><strong>Age:</strong> 19 turning 20 this March 24</p>
+            <img src="19.jpg" alt="My Photo">
+            <img src="photo1710838753.jpeg" alt="My Photo">
+            <p><strong>Location:</strong> Chateau Lingunan Valenzuela City</p>
+            <img src="chateau.jpg" alt="My Photo">
+            <p><strong>Year and Course:</strong> 2nd Year Bachelor of Science in Computer Science</p>
+            <img src="photo1703145599.jpeg" alt="My Photo">
+            <img src="bscs.jpg" alt="My Photo">
+            <p><strong>Hobbies:</strong> Driving Motor and Car, Playing Bass Guitar, Playing Badminton, Tambourine</p>
+            <img src="motor,zuk.jpg" alt="My Photo">
+            <img src="bass.jpg" alt="My Photo">
+            <img src="badminton.jpg" alt="My Photo">
+            <img src="tambo.jpg" alt="My Photo">
+            <p><strong>Interesting:</strong> I love to pamper Myself, I don't eat Cheese, I don't drink Milk</p>
+            <img src="pamper.jpg" alt="My Photo">
+            <img src="make up.jpg" alt="My Photo">
+            <p><strong>Wants:</strong> Coffee Lover, Traveler, Bag Collector</p>
+            <img src="coffee.jpg" alt="My Photo">
+            <img src="travel.jpg" alt="My Photo">
+            <p><strong>I'm:</strong> Born Again Christian, Daughter of Pastor, Extrovert and Jolly Person</p>
+            <img src="prayer mountain.jpg" alt="My Photo">
+            <img src="dad.jpg" alt="My Photo">
+            <p><strong>People:</strong> Family, Friends, JLH Family</p>
+            <img src="family.jpg" alt="My Photo">
+            <img src="friends.jpg" alt="My Photo">
+            <img src="jlh.jpg" alt="My Photo">
+            <p><strong>Achievement:</strong> Junior High School and College</p>
+            <img src="high.jpg" alt="My Photo">
+            <img src="medal.jpg" alt="My Photo">
+            <p><strong>Goal:</strong> To be a Future Pilot</p>
+            <img src="capt.jpg" alt="My Photo">
+             <p><strong>Special Someone:</strong> We're both the same Bassist and Rider</p>
+            <img src="432321529_746023233976059_3073580652549899859_n.jpg" alt="My Photo">
+           
+        </div>
 
-    <div class="sticker sticker1">❤</div>
-    <div class="sticker sticker2">✨</div>
-    <div class="sticker sticker3">🐕</div>
-    <div class="sticker sticker4">🐾</div>
-
-
-    <body>
         <div class="container">
-            <h2 id="formTitle">Signup</h2>
-            <form id="userForm">
-                <div class="form-group" id="usernameGroup">
-                    <input type="text" id="username" name="username" placeholder="Username" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="Password" required>
-                </div>
-                <button type="submit" id="submitButton">Signup</button>
-                <button onclick="window.location.href='finals.html';">Back to Login</button>
-            </form>
-            
+            <h1>Social Media</h1>
+        <div class="social-links">
+            <a href="https://web.facebook.com/niknikbu/" target="_blank">
+                <img src="download.png" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/_jfaithhhh/" target="_blank">
+                <img src="download.jpg" alt="Instagram">
+            </a>
+            <a href="https://twitter.com/_aicel19" target="_blank">
+                <img src="twt.avif" alt="Twitter">
+            </a>
         </div>
-            </form>
+    </div>
 
-            <div id="welcomeBackMessage" style="display: none;">
-                <h2>Congratulations!</h2>
-                <p>Welcome back, Admin!</p>
-                <button id="backToLogin">Back to Login</button>
-            </div>
-        </div>
-    
-        <script>
-            const userForm = document.getElementById("userForm");
-            const formTitle = document.getElementById("formTitle");
-            const submitButton = document.getElementById("submitButton");
-    
-            userForm.addEventListener("submit", function (event) {
-                event.preventDefault();
-    
-                const username = document.getElementById("username").value;
-                const password = document.getElementById("password").value;
-                if (username === "jaiciervo" && password === "Jaizel24.") {
-                    window.location.href = "https://jfaithhhh.github.io/newmain/?fbclid=IwAR3C7KfkxCzmFMC1uXJuJ_rjHhwUSB6ln6-g7wHsEHCY4NI_8H-3AK-X4FA";
-                } else {
-                    alert("Invalid username or password. Please try again.");
-                }
-            });
-        </script>
-    </body>
-    
-    </html>
-    
     <script>
-        function goToSignUp() {
-            
-            window.location.href = 'signup.html';
+        function startProgram() {
+            alert("Hope you Enjoy It!");
         }
     </script>
+
+    <div class="container">
+        <h1>Organization</h1>
+    <div class="social-links">
+        <a href="https://www.facebook.com/JLHChristianFamilyChurch" target="_blank">
+            <img src="JLH1.jpg" alt="JLH">
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=100078731231988" target="_blank">
+            <img src="SLCV.jpg" alt="SLCV">
+        </a>
+        <a href="https://www.facebook.com/JLHRadiantGeneration" target="_blank">
+            <img src="rgen.jpg" alt="Twitter">
+        </a>
+    </div>
+
+    <p><strong>Email Me At:</strong> jaiciervo7@gmail.com</p>
+    <p><strong>Contact Number:</strong> 09668973035</p>
+</div>
 </body>
 </html>
