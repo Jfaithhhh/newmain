@@ -287,25 +287,25 @@
                 <button id="backToLogin">Back to Login</button>
             </div>
         </div>
-    
         <script>
-            const userForm = document.getElementById("userForm");
-            const formTitle = document.getElementById("formTitle");
-            const submitButton = document.getElementById("submitButton");
-    
-            userForm.addEventListener("submit", function (event) {
-                event.preventDefault();
-    
-                const username = document.getElementById("username").value;
-                const password = document.getElementById("password").value;
-                if (username === "" && password === "") {
-                    window.location.href = "https://jfaithhhh.github.io/newmain/?fbclid=IwAR3C7KfkxCzmFMC1uXJuJ_rjHhwUSB6ln6-g7wHsEHCY4NI_8H-3AK-X4FA";
-                } else {
-                    alert("Invalid username or password. Please try again.");
-                }
-            });
-        </script>
-    </body>
+        const userForm = document.getElementById("userForm");
+
+        userForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (username && email && password) {
+                window.location.href = "https://jfaithhhh.github.io/newmain/?fbclid=IwAR3C7KfkxCzmFMC1uXJuJ_rjHhwUSB6ln6-g7wHsEHCY4NI_8H-3AK-X4FA";
+            } else {
+                alert("Please fill in all fields.");
+            }
+        });
+    </script>
+</body>
+</html>
     
     </html>
     
