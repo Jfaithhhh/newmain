@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Sign Up Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6f2;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #ff66b2;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ffb3d9;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff66b2;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #ff3385;
+        }
+
+        .success-message {
+            margin-top: 20px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        #toggleForm {
+            cursor: pointer;
+            color: #ff66b2;
+        }
+
+        .forgot-password {
+            cursor: pointer;
+            color: #ff66b2;
+            margin-bottom: 10px;
+        }
+
+        .cloud {
+            position: absolute;
+            background: #fff;
+            background: linear-gradient(to bottom, #fff 5%, #f1f1f1 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 0;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: #fff;
+            background: linear-gradient(to bottom, #fff 5%, #f1f1f1 100%);
+            border-radius: 50%;
+        }
+
+        .cloud.x1 {
+            top: 50px;
+            left: -200px;
+            width: 100px;
+            height: 60px;
+            animation: moveClouds 15s linear infinite;
+        }
+
+        .cloud.x1::before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 20px;
+        }
+
+        .cloud.x1::after {
+            width: 80px;
+            height: 80px;
+            top: -40px;
+            left: 60px;
+        }
+
+        .cloud.x2 {
+            top: 150px;
+            left: -300px;
+            width: 200px;
+            height: 120px;
+            animation: moveClouds 20s linear infinite;
+        }
+
+        .cloud.x2::before {
+            width: 120px;
+            height: 120px;
+            top: -60px;
+            left: 40px;
+        }
+
+        .cloud.x2::after {
+            width: 160px;
+            height: 160px;
+            top: -80px;
+            left: 120px;
+        }
+
+        .cloud.x3 {
+            top: 250px;
+            left: -400px;
+            width: 150px;
+            height: 90px;
+            animation: moveClouds 25s linear infinite;
+        }
+
+        .cloud.x3::before {
+            width: 90px;
+            height: 90px;
+            top: -45px;
+            left: 30px;
+        }
+
+        .cloud.x3::after {
+            width: 120px;
+            height: 120px;
+            top: -60px;
+            left: 90px;
+        }
+
+        .cloud.x4 {
+            top: 350px;
+            left: -500px;
+            width: 120px;
+            height: 70px;
+            animation: moveClouds 30s linear infinite;
+        }
+
+        .cloud.x4::before {
+            width: 70px;
+            height: 70px;
+            top: -35px;
+            left: 20px;
+        }
+
+        .cloud.x4::after {
+            width: 100px;
+            height: 100px;
+            top: -50px;
+            left: 70px;
+        }
+
+        @keyframes moveClouds {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(100vw);
+            }
+        }
+
+        .sticker {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #ff66b2;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .sticker1 {
+            top: 10px;
+            right: 10px;
+        }
+
+        .sticker2 {
+            bottom: 10px;
+            left: 10px;
+        }
+
+        .sticker3 {
+            top: 10px;
+            left: 10px;
+        }
+
+        .sticker4 {
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cloud x1"></div>
+    <div class="cloud x2"></div>
+    <div class="cloud x3"></div>
+    <div class="cloud x4"></div>
+
+    <div class="sticker sticker1">❤</div>
+    <div class="sticker sticker2">✨</div>
+    <div class="sticker sticker3">🐕</div>
+    <div class="sticker sticker4">🐾</div>
+
+
+    <body>
+        <div class="container">
+            <h2 id="formTitle">Log In</h2>
+            <form id="userForm">
+                <div class="form-group" id="usernameGroup">
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" id="submitButton">Enter</button>
+            </form>
+
+            <div id="welcomeBackMessage" style="display: none;">
+                <h2>Congratulations!</h2>
+                <p>Welcome back, Admin!</p>
+                <button id="backToLogin">Back to Login</button>
+            </div>
+        </div>
+    
+        <script>
+            const userForm = document.getElementById("userForm");
+            const formTitle = document.getElementById("formTitle");
+            const submitButton = document.getElementById("submitButton");
+    
+            userForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+    
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+                if (username === "jaiciervo" && password === "Jaizel24.") {
+                    window.location.href = "https://jfaithhhh.github.io/newmain/?fbclid=IwAR3C7KfkxCzmFMC1uXJuJ_rjHhwUSB6ln6-g7wHsEHCY4NI_8H-3AK-X4FA";
+                } else {
+                    alert("Invalid username or password. Please try again.");
+                }
+            });
+        </script>
+    </body>
+    
+    </html>
